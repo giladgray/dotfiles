@@ -1,0 +1,32 @@
+[color]
+	ui = true
+[push]
+	default = simple
+[core]
+	excludesfile = /Users/ggray/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[alias]
+  a = add
+  c = commit
+  co = checkout
+  ca = commit --amend
+  lg = log --format=\"%w(92,0,21)%C(yellow)%h %Cgreen%<(12)%an %Creset%s\" --graph
+  pl = pull
+  ps = push
+  st = status -sb
+  sq = !sh -c 'git rebase -i HEAD~$0'
+	rb = rebase
+	rbc = rebase --continue
+  fomo = !sh -c 'BRANCH=${1:-$0} && git fetch origin $BRANCH && git merge --no-ff FETCH_HEAD' master
+	finish = !sh -c 'CURRENT=$(git rev-parse --abbrev-ref HEAD) BRANCH=${1:-$0} && git checkout $BRANCH && git branch -D $CURRENT && git pull' master
+[credential]
+	helper = osxkeychain
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

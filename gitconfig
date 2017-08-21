@@ -1,15 +1,15 @@
 [color]
-	ui = true
+  ui = true
 [push]
-	default = simple
+  default = simple
 [core]
-	excludesfile = /Users/ggray/.gitignore_global
+  excludesfile = /Users/ggray/.gitignore_global
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 [alias]
   a = add
   c = commit
@@ -20,13 +20,20 @@
   ps = push
   st = status -sb
   sq = !sh -c 'git rebase -i HEAD~$0'
-	rb = rebase
-	rbc = rebase --continue
-  fomo = !sh -c 'BRANCH=${1:-$0} && git fetch origin $BRANCH && git merge --no-ff FETCH_HEAD' master
-	finish = !sh -c 'CURRENT=$(git rev-parse --abbrev-ref HEAD) BRANCH=${1:-$0} && git checkout $BRANCH && git branch -D $CURRENT && git pull' master
+  rb = rebase
+  rbc = rebase --continue
+  # print name of default branch (typically develop or master)
+  default = !sh -c 'git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"'
+  # fetch-origin-merge-origin: update feature branch with latest changes from default branch
+  fomo = !sh -c 'BRANCH=${1:-$(git default)} && git fetch origin $BRANCH && git merge --no-ff FETCH_HEAD'
+  # finish a feature branch: delete it, checkout default, pull latest
+  finish = !sh -c 'CURRENT=$(git rev-parse --abbrev-ref HEAD) BRANCH=${1:-$(git default)} && git checkout $BRANCH && git branch -D $CURRENT && git pull'
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+[user]
+  name = Gilad Gray

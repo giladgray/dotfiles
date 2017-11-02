@@ -3,14 +3,14 @@
 [push]
   default = simple
 [core]
-	excludesfile = /Users/ggray/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
+  excludesfile = /Users/ggray/.gitignore_global
+  pager = diff-so-fancy | less --tabs=4 -RFX
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 [alias]
   a = add
   c = commit
@@ -33,24 +33,24 @@
 [credential]
   helper = osxkeychain
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	process = git-lfs filter-process
-	required = true
-	smudge = git-lfs smudge -- %f
+  clean = git-lfs clean -- %f
+  process = git-lfs filter-process
+  required = true
+  smudge = git-lfs smudge -- %f
 [user]
-	email = ggray@palantir.com
-	name = Gilad Gray
+  email = ggray@palantir.com
+  name = Gilad Gray
 [color "diff-highlight"]
-	newHighlight = green bold 22
-	newNormal = green bold
-	oldHighlight = red bold 52
-	oldNormal = red bold
+  newHighlight = green bold 22
+  newNormal = green bold
+  oldHighlight = red bold 52
+  oldNormal = red bold
 [color "diff"]
-	commit = 227 bold
-	frag = magenta bold
-	meta = 227
-	new = green bold
-	old = red bold
-	whitespace = red reverse
+  commit = 227 bold
+  frag = magenta bold
+  meta = 227
+  new = green bold
+  old = red bold
+  whitespace = red reverse
 [commit]
-	template = /Users/ggray/.stCommitMsg
+  template = /Users/ggray/.stCommitMsg

@@ -3,37 +3,54 @@
 [push]
   default = simple
 [core]
-  excludesfile = /Users/ggray/.gitignore_global
+	excludesfile = /Users/ggray/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path =
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
 [mergetool "sourcetree"]
-  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 [alias]
   a = add
   c = commit
-  co = checkout
   ca = commit --amend
+  co = checkout
+  d = diff
   lg = log --format=\"%w(92,0,21)%C(yellow)%h %Cgreen%<(12)%an %Creset%s\" --graph
   pl = pull
   ps = push
-  st = status -sb
-  sq = !sh -c 'git rebase -i HEAD~$0'
   rb = rebase
   rbc = rebase --continue
+  sq = !sh -c 'git rebase -i HEAD~$0'
+  st = status -sb
   # print name of default branch (typically develop or master)
-  default = !sh -c 'git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"'
+  default = !sh -c 'git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"' -
   # fetch-origin-merge-origin: update feature branch with latest changes from default branch
-  fomo = !sh -c 'BRANCH=${1:-$(git default)} && git fetch origin $BRANCH && git merge --no-ff FETCH_HEAD'
+  fomo = !sh -c 'BRANCH=${1:-$(git default)} && echo $BRANCH && git fetch origin $BRANCH && git merge --no-ff FETCH_HEAD' -
   # finish a feature branch: delete it, checkout default, pull latest
-  finish = !sh -c 'CURRENT=$(git rev-parse --abbrev-ref HEAD) BRANCH=${1:-$(git default)} && git checkout $BRANCH && git branch -D $CURRENT && git pull'
+  finish = !sh -c 'CURRENT=$(git rev-parse --abbrev-ref HEAD) BRANCH=${1:-$(git default)} && git checkout $BRANCH && git branch -D $CURRENT && git pull' -
 [credential]
   helper = osxkeychain
 [filter "lfs"]
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
-  required = true
-  clean = git-lfs clean -- %f
+	clean = git-lfs clean -- %f
+	process = git-lfs filter-process
+	required = true
+	smudge = git-lfs smudge -- %f
 [user]
-  name = Gilad Gray
+	email = ggray@palantir.com
+	name = Gilad Gray
+[color "diff-highlight"]
+	newHighlight = green bold 22
+	newNormal = green bold
+	oldHighlight = red bold 52
+	oldNormal = red bold
+[color "diff"]
+	commit = 227 bold
+	frag = magenta bold
+	meta = 227
+	new = green bold
+	old = red bold
+	whitespace = red reverse
+[commit]
+	template = /Users/ggray/.stCommitMsg

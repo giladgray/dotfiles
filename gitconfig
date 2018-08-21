@@ -2,44 +2,43 @@
   ui = true
 [push]
   default = simple
-[core]
-  excludesfile = /Users/ggray/.gitignore_global
-  pager = diff-so-fancy | less --tabs=4 -RFX
-[difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path =
-[mergetool "sourcetree"]
-  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
 [alias]
+  # Common Shorthands
+  # -----------------
   a = add
   c = commit
   ca = commit --amend
   co = checkout
+  cod = !sh -c 'git checkout $(git default)'
+  cp = cherry-pick
+  cpc = cherry-pick --continue
   d = diff
   lg = log --format=\"%w(92,0,21)%C(yellow)%h %Cgreen%<(12)%an %Creset%s\" --graph
+  mv = branch --move
   pl = pull
   ps = push
   rb = rebase
   rbc = rebase --continue
-  sq = !sh -c 'git rebase -i HEAD~$0'
   st = status -sb
+  helper = osxkeychain
+  
+  # Workflow Macros
+  # ---------------
   # print name of default branch (typically develop or master)
   default = !sh -c 'git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"' -
   # fetch-origin-merge-origin: update feature branch with latest changes from default branch
-  fomo = !sh -c 'BRANCH=${1:-$(git default)} && echo $BRANCH && git fetch origin $BRANCH && git merge --no-ff FETCH_HEAD' -
+  fomo = !sh -c 'BRANCH=${1:-$(git default)} && echo "Merging latest $BRANCH..." && git fetch origin $BRANCH && git merge --no-ff FETCH_HEAD' -
+  # start a feature branch
+  start = checkout -b
   # finish a feature branch: delete it, checkout default, pull latest
-  finish = !sh -c 'CURRENT=$(git rev-parse --abbrev-ref HEAD) BRANCH=${1:-$(git default)} && git checkout $BRANCH && git branch -D $CURRENT && git pull' -
-[credential]
-  helper = osxkeychain
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-  process = git-lfs filter-process
-  required = true
-  smudge = git-lfs smudge -- %f
-[user]
-  email = ggray@palantir.com
-  name = Gilad Gray
+  finish = !sh -c 'CURRENT=$(git rev-parse --abbrev-ref HEAD) BRANCH=${1:-$(git default)} && echo "Finishing feature branch $CURRENT into $BRANCH..." && git checkout $BRANCH && git branch -D $CURRENT && git pull' -
+  # "squash last 4 commits" = g sq 4
+  sq = !sh -c 'git rebase -i HEAD~$0'
+  
+# diff-so-fancy: better console colors
+# https://github.com/so-fancy/diff-so-fancy
+[core]
+  pager = diff-so-fancy | less --tabs=4 -RFX
 [color "diff-highlight"]
   newHighlight = green bold 22
   newNormal = green bold
@@ -52,5 +51,9 @@
   new = green bold
   old = red bold
   whitespace = red reverse
-[commit]
-  template = /Users/ggray/.stCommitMsg
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  process = git-lfs filter-process
+  required = true
+  smudge = git-lfs smudge -- %f

@@ -27,11 +27,20 @@
   # print name of default branch (typically develop or master)
   default = !sh -c 'git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"' -
   # fetch-origin-merge-origin: update feature branch with latest changes from default branch
-  fomo = !sh -c 'BRANCH=${1:-$(git default)} && echo "Merging latest $BRANCH..." && git fetch origin $BRANCH && git merge --no-ff FETCH_HEAD' -
+  fomo = !sh -c '\
+    BRANCH=${1:-$(git default)} && \
+    echo "Merging latest $BRANCH..." && \
+    git fetch origin $BRANCH && \
+    git merge --no-ff FETCH_HEAD' -
   # start a feature branch
   start = checkout -b
   # finish a feature branch: delete it, checkout default, pull latest
-  finish = !sh -c 'CURRENT=$(git rev-parse --abbrev-ref HEAD) BRANCH=${1:-$(git default)} && echo "Finishing feature branch $CURRENT into $BRANCH..." && git checkout $BRANCH && git branch -D $CURRENT && git pull' -
+  finish = !sh -c '\
+    CURRENT=$(git rev-parse --abbrev-ref HEAD) && \
+    BRANCH=${1:-$(git default)} && \
+    echo "Finishing feature branch $CURRENT into $BRANCH..." && \
+    git checkout $BRANCH && \
+    git branch -D $CURRENT && git pull' -
   # "squash last 4 commits" = g sq 4
   sq = !sh -c 'git rebase -i HEAD~$0'
   

@@ -1,5 +1,5 @@
 # dotfiles
 
-- `gitconfig` starter kit
-- `zshrc` starter kit
+- [`gitconfig`](./gitconfig) - copy into `~/.gitconfig`
+- [`zshrc`](./zshrc) - copy into `~/.zshrc`
 - [Critical programs](./PROGRAMS.md)

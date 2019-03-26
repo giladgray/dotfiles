@@ -1,17 +1,21 @@
 # Critical Programs
 
-- 1Password
-- Alfred
-- Chrome
+### Coding
 - iTerm
-- VS Code
+- SourceTree / GitHub Desktop
 - Sublime Text
-- Slack
-- Spotify
-- Dash
-- BTT
+- VS Code
+
+### Working
+- Chrome + Firefox
 - Pixelmator
 - Sketch
-- SourceTree?
+- Slack
+
+### Staying sane
+- 1Password
+- Alfred
+- BetterTouchTool
+- Spotify
 - Steam
 - VLC

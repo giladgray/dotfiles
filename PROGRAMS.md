@@ -16,6 +16,7 @@
 - 1Password
 - Alfred
 - BetterTouchTool
+- Magnet
 - Spotify
 - Steam
 - VLC

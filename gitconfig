@@ -25,6 +25,12 @@
   
   # Workflow Macros
   # ---------------
+  # If you see the following ERROR message:
+  #     fatal: ref refs/remotes/origin/HEAD is not a symbolic ref
+  #
+  # Run the following command:
+  # (replace "master" with your default branch name if it is different)
+  #     echo "ref: refs/remotes/origin/master" > .git/refs/remotes/origin/HEAD
   
   # print name of default branch (typically develop or master)
   default = !sh -c 'git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"' -

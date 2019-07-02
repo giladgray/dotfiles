@@ -5,6 +5,9 @@
 - SourceTree / GitHub Desktop
 - Sublime Text
 - VS Code
+- diff-so-fancy
+- Ag, Silver Searcher
+
 
 ### Working
 - Chrome + Firefox

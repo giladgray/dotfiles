@@ -2,12 +2,11 @@
 
 ### Coding
 - iTerm
+   - Preferences → Profiles → Keys tab → Click `Load Preset...` and choose `Natural Text Editing`.
 - SourceTree / GitHub Desktop
-- Sublime Text
 - VS Code
+   - Extensions: Blueprint (theme), vscode-icons, TSLint, npm IntelliSense 
 - diff-so-fancy
-- Ag, Silver Searcher
-
 
 ### Working
 - Chrome + Firefox
@@ -23,3 +22,7 @@
 - Spotify
 - Steam
 - VLC
+
+### Mac OS X Preferences
+- Bluetooth → ✅ `Show Bluetooth in menu bar`
+- Mission Control → :x: `Automatically rearrange Spaces...`

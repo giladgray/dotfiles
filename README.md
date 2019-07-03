@@ -1,8 +1,16 @@
 # dotfiles
 
-- [`gitconfig`](./gitconfig) - copy into `~/.gitconfig`
-- [`zshrc`](./zshrc) - copy into `~/.zshrc`
-- [Critical programs](./PROGRAMS.md)
+## Setup
+
+1. Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh#basic-installation).
+1. Download [`zshrc`](./zshrc) to `~/.zshrc`
+   ```sh
+   curl -fsSL https://raw.githubusercontent.com/giladgray/dotfiles/master/zshrc > ~/.zshrc
+   ```
+1. Download [`gitconfig`](./gitconfig) to `~/.gitconfig`
+   ```sh
+   curl -fsSL https://raw.githubusercontent.com/giladgray/dotfiles/master/gitconfig > ~/.gitconfig
+   ```
 
 ## Critical Programs
 

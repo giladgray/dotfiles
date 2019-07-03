@@ -20,7 +20,7 @@
 
 ### Coding
 - [iTerm][iterm]
-   - Preferences → Profiles → Keys tab → Click `Load Preset...` and choose `Natural Text Editing`.
+   - Preferences → Profiles → Keys tab → Click `Load Preset...` → `Natural Text Editing`.
 - [SourceTree][sourcetree] / GitHub Desktop
 - [VS Code][vscode]
    - Extensions: Blueprint (theme), vscode-icons, TSLint, npm IntelliSense 
@@ -36,6 +36,7 @@
 ### Staying sane
 - 1Password*
 - [Alfred][alfred]
+    - PowerPack → Clipboard → enable History
 - [BetterTouchTool][btt]
 - Magnet*
 - Spotify

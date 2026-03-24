@@ -4,9 +4,10 @@
 
 ### Terminal
 1. Install [iTerm2](https://iterm2.com/) or [Hyper](https://hyper.is/)
+1. Install command line developer tools: `xcode-select --install`
 1. Install [oh-my-zsh][oh-my-zsh]
 1. Install [Homebrew][brew]
-1. Install [Fig][fig]: `brew install fig`
+   - `brew install gh zsh-autocomplete zsh-syntax-highlighting`
 1. Download [`zshrc`](./zshrc):
    `curl -fsSL https://raw.githubusercontent.com/giladgray/dotfiles/main/zshrc > ~/.zshrc`
 1. Download [`gitconfig`](./gitconfig):
@@ -14,7 +15,7 @@
 1. Restart terminal
    
 ### Node
-1. Install [NVM via curl][nvm] then Node: `nvm install 14`
+1. Install [NVM via curl][nvm] then Node: `nvm install 22 --default`
 1. Install [Yarn][yarn]: `npm install --global yarn`
 1. `node -v && npm -v && yarn -v`
 
@@ -47,25 +48,20 @@
 
 ### Staying sane
 - [1Password](https://my.1password.com/apps) - Requires login with Secret Key
-- [Alfred][alfred]
-    - PowerPack → Clipboard → enable History
-- [BetterTouchTool][btt]
-- Magnet*
+- [Raycast][https://www.raycast.com/]
+- [Karabiner][https://karabiner-elements.pqrs.org/]
 - [Signal][signal] Messenger
 - Spotify
 - Steam
 - VLC
 
 ### Mac OS X Preferences
-- Bluetooth → ✅ `Show Bluetooth in menu bar`
+- Menu Bar → ✅ `Show Bluetooth in menu bar`
 - Mission Control → :x: `Automatically rearrange Spaces...`
 - Trackpad → Point & Click → ✅ `Tap to click`
 - Trackpad → Scroll & Zoom → :x: `Scroll direction: Natural`
 
-[alfred]: http://alfredapp.com
 [brew]: https://brew.sh
-[btt]: https://folivora.ai
-[fig]: https://fig.io/
 [iterm]: https://iterm2.com
 [node]: https://nodejs.org
 [nvm]: https://github.com/nvm-sh/nvm#installing-and-updating

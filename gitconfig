@@ -5,8 +5,10 @@
 [alias]
   # Common Shorthands
   # -----------------
-  
+
   a = add
+  bd = branch -D
+  bm = branch --move
   c = commit
   ca = commit --amend
   co = checkout
@@ -22,17 +24,17 @@
   rbc = rebase --continue
   st = status -sb
   helper = osxkeychain
-  
+
   # Workflow Macros
   # ---------------
   # If you see the following ERROR message:
   #     fatal: ref refs/remotes/origin/HEAD is not a symbolic ref
   #
   # Run the following command:
-  # (replace "master" with your default branch name if it is different)
-  #     echo "ref: refs/remotes/origin/master" > .git/refs/remotes/origin/HEAD
-  
-  # print name of default branch (typically develop or master)
+  # (replace "main" with your default branch name if it is different)
+  #     echo "ref: refs/remotes/origin/main" > .git/refs/remotes/origin/HEAD
+
+  # print name of default branch (typically develop or main)
   default = !sh -c 'git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"' -
 
   # fetch-origin-merge-origin: update feature branch with latest changes from default branch
@@ -55,11 +57,15 @@
 
   # "squash last 4 commits" = g sq 4
   sq = !sh -c 'git rebase -i HEAD~$0'
-  
+
+  # oops! undo the last commit into staged changes
+  uncommit = reset --soft HEAD^
+
 # diff-so-fancy: better console colors
 # https://github.com/so-fancy/diff-so-fancy
 [core]
   pager = diff-so-fancy | less --tabs=4 -RFX
+	excludesfile = /Users/giladgray/.gitignore_global
 [color "diff-highlight"]
   newHighlight = green bold 22
   newNormal = green bold
@@ -72,3 +78,16 @@
   new = green bold
   old = red bold
   whitespace = red reverse
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = main

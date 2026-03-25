@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+export ANDROID_HOME="$HOME/Library/Android/sdk"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -14,13 +14,14 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git last-working-dir wd)
+plugins=(asdf last-working-dir wd)
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
 
 source $ZSH/oh-my-zsh.sh
+source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -46,12 +47,25 @@ alias nis="npm install --save --save-exact"
 alias nid="npm install --save-dev --save-exact"
 
 alias y="yarn"
-alias yabo="yarn bootstrap"
-alias ycc="yarn clean && yarn compile"
-alias yls="yarn list --pattern"
-alias ylr="yarn lerna run"
+alias yls="yarn info -A"
+alias yy="yarn why"
 
-alias tsc="$(npm bin)/tsc"
+alias b="bun"
+alias bls="bun pm ls --all"
+alias blsf="bls | grep -i"
+
+# list current and latest version of an NPM package
+function yv() {
+  echo "current: $(yls $1 | grep "─ $1@")"
+  echo "$(npm info $1 | grep latest: | sed 's/^[ \t]*/ /')"
+}
+
+function bv() {
+  echo "current: $(NO_COLOR=true blsf " $1@")"
+  echo "$(yarn info $1 | grep latest: | sed 's/^[ \t]*/ /')"
+}
+
+alias adb-link="adb shell am start -a android.intent.action.VIEW -d"
 
 # update jest snapshots and commit result
 alias jest-snap="yarn test --updateSnapshot && git add '**/__snapshots__/*' && git commit -m '📸'"
@@ -65,4 +79,18 @@ function npmbin () {
 }
 alias nb="npmbin"
 
+# setup plugins
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# https://www.iterm2.com/documentation-shell-integration.html
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# bun completions
+[ -s "/Users/giladgray/.bun/_bun" ] && source "/Users/giladgray/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

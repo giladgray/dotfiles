@@ -1,6 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="robbyrussell"
@@ -12,17 +14,17 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git-completion last-working-dir wd zsh-syntax-highlighting)
+plugins=(git last-working-dir wd)
 
 # User configuration
 
-export JAVA_7_HOME=$(/usr/libexec/java_home -F -v1.7)
-export JAVA_8_HOME=$(/usr/libexec/java_home -F -v1.8)
-export JAVA_HOME=${JAVA_8_HOME}
-
-export PATH=$HOME/bin:/usr/local/bin:$JAVA_HOME/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # edit config files
 # launch VSCode and reuse last opened window
@@ -54,11 +56,6 @@ alias tsc="$(npm bin)/tsc"
 # update jest snapshots and commit result
 alias jest-snap="yarn test --updateSnapshot && git add '**/__snapshots__/*' && git commit -m '📸'"
 
-function killgulp () {
-  kill -9 $(ps aux | grep '[g]ulp' | awk '{print $2}')
-}
-alias kg="killgulp"
-
 # run from node .bin directory
 function npmbin () {
   # extract first argument (program) and spread the rest
@@ -68,8 +65,4 @@ function npmbin () {
 }
 alias nb="npmbin"
 
-# setup plugins
-# https://github.com/zsh-users/zsh-syntax-highlighting
-source /usr/local/Cellar/zsh-syntax-highlighting/0.5.0/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# https://www.iterm2.com/documentation-shell-integration.html
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

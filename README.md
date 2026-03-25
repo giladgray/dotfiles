@@ -23,7 +23,7 @@
 1. `git config --global user.name "<name>"`
 1. `git config --global user.email "<email>"`
 1. Diff tool: `npm install -g diff-so-fancy`
-1. Generate [SSH Key and add to Github](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+1. Generate [SSH Key and add to Github](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent): `gh auth login`
 1. Clone relevant git repos
 
 ## Critical Programs
@@ -48,8 +48,8 @@
 
 ### Staying sane
 - [1Password](https://my.1password.com/apps) - Requires login with Secret Key
-- [Raycast][https://www.raycast.com/]
-- [Karabiner][https://karabiner-elements.pqrs.org/]
+- [Raycast](https://www.raycast.com/)
+- [Karabiner](https://karabiner-elements.pqrs.org/)
 - [Signal][signal] Messenger
 - Spotify
 - Steam
@@ -60,6 +60,7 @@
 - Mission Control → :x: `Automatically rearrange Spaces...`
 - Trackpad → Point & Click → ✅ `Tap to click`
 - Trackpad → Scroll & Zoom → :x: `Scroll direction: Natural`
+- AutoFill & Password -> :x: AutoFill Passwords and Passkeys (using 1Password instead)
 
 [brew]: https://brew.sh
 [iterm]: https://iterm2.com

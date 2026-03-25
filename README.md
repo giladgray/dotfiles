@@ -45,6 +45,8 @@
 - Skitch*
 - Slack*
 - [Zoom](https://zoom.us/download)
+- [Notion](https://www.notion.com/desktop)
+- [Linear](https://linear.app/download)
 
 ### Staying sane
 - [1Password](https://my.1password.com/apps) - Requires login with Secret Key

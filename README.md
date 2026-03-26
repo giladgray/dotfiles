@@ -58,6 +58,7 @@
 - VLC
 
 ### Mac OS X Preferences
+- Register fingerprints for TouchID!
 - Menu Bar → ✅ `Show Bluetooth in menu bar`
 - Mission Control → :x: `Automatically rearrange Spaces...`
 - Trackpad → Point & Click → ✅ `Tap to click`
